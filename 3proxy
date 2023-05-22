@@ -1,0 +1,23 @@
+#!/bin/sh
+
+case "$1" in
+   start)
+       echo Starting 3Proxy
+
+       /etc/3proxy/3proxy /etc/3proxy/3proxy.cfg
+       ;;
+
+   stop)
+       echo Stopping 3Proxy
+       /usr/bin/killall 3proxy
+       ;;
+
+   restart|reload)
+       echo Reloading 3Proxy
+       /usr/bin/killall -s USR1 3proxy
+       ;;
+   *)
+       echo Usage: \$0 "{start|stop|restart}"
+       exit 1
+esac
+exit 0
